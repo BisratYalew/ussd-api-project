@@ -98,10 +98,10 @@ exports.signin = (req, res) => {
 
 }
 
-exports.checkAuth = (req, res) => {
+exports.getMyProfile = (req, res) => {
     return res.status(200).json({
         message: "Successfull authorization",
-        user: req?.user
+        user: req?.user?.id
     })
 
 }

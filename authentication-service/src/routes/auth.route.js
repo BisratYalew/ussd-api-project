@@ -12,6 +12,7 @@ router.route('/signup')
 router.route('/signin')
     .post(signinValidator, asyncHandler(authController.signin));
 
-
+router.route('/me')
+    .get(authenticate, authController.getMyProfile);
 
 module.exports = router;
