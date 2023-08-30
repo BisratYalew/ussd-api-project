@@ -2,6 +2,22 @@ const User = require('../models/user.model');
 const { hash: hashPin, compare: comparePin } = require('../utils/pin');
 const { generate: generateToken } = require('../utils/token');
 
+
+/**
+ * @api {get} /api/auth/signup Register a new user
+ * @apiName Register User
+ * @apiGroup User
+ *
+ * @apiParam {String} firstname Users first name.
+ * @apiParam {String} lastname Users last name.
+ * @apiParam {String} accountNumber Users account number.
+ * @apiParam {String} phoneNumber Users phone number.
+ * @apiParam {String} pin 4 digit pin code number.
+ *
+ * @apiSuccess (201) {Number} id Unique identifier number of the registered user.
+ * @apiSuccess (201) {String} firstname Firstname of the User.
+ * @apiSuccess (201) {String} lastname  Lastname of the User.
+ */
 exports.signup = (req, res) => {
     const { firstname, lastname, phoneNumber, accountNumber, pin } = req.body;
     const hashedPin = hashPin(pin.trim());
@@ -30,6 +46,17 @@ exports.signup = (req, res) => {
 };
 
 
+/**
+ * @api {get} /api/auth/signin Login a User.
+ * @apiName Login User
+ * @apiGroup User
+ *
+ * @apiParam {String} phoneNumber Users phone number.
+ * @apiParam {String} pin 4 digit pin code number.
+ *
+ * @apiSuccess (200) {Object} token JWT Token
+ * @apiSuccess (200) {Object} Users information.
+ */
 exports.signin = (req, res) => {
     const { phoneNumber, pin } = req.body;
     User.findByPhoneNumber(phoneNumber.trim(), (err, data) => {

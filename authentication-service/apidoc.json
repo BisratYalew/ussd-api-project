@@ -1,0 +1,7 @@
+{
+  "name": "ussd-project-api-authentication-service-documentation",
+  "version": "0.1.0",
+  "description": "The ussd project API's documentation for the authentication service",
+  "title": "USSD Project API - Authentication Service Documentation",
+  "url" : "localhost:3000"
+}
