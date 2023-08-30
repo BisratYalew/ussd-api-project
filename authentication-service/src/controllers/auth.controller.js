@@ -76,7 +76,7 @@ exports.signin = (req, res) => {
         }
         if (data) {
             if (comparePin(pin.trim(), data.pin)) {
-                const token = generateToken(data.id);
+                const token = generateToken({ id: data?.id, firstname: data?.firstname, lastname: data?.lastname, phoneNumber: data?.phoneNumber, accountNumber: data?.accountNumber });
                 res.status(200).send({
                     status: 'success',
                     data: {
@@ -95,5 +95,13 @@ exports.signin = (req, res) => {
             });
         }
     });
+
+}
+
+exports.checkAuth = (req, res) => {
+    return res.status(200).json({
+        message: "Successfull authorization",
+        user: req?.user
+    })
 
 }
