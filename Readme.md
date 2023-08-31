@@ -2,7 +2,6 @@
 
 
 <br />
-<br />
 
 ## Running the program
-#### Go to the authentication-service and ussd-menu-service apis and read the running instructions.
+#### Go to the authentication-service and ussd-menu-service directories and read the Readme instructions.
