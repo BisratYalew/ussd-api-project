@@ -16,6 +16,13 @@
 git clone https://github.com/BisratYalew/ussd-api-project
 ```
 
+##### Go to the ussd-menu-service api dir
+<br />
+
+```sh
+cd ussd-menu-service
+```
+
 
 ##### Install the dependencies and devDependencies.
 <br />
