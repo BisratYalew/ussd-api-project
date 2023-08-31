@@ -1,3 +1,5 @@
+const EventEmitter = require('events').EventEmitter;
+
 const User = require('../models/user.model');
 const { hash: hashPin, compare: comparePin } = require('../utils/pin');
 const { generate: generateToken } = require('../utils/token');
@@ -22,26 +24,50 @@ exports.signup = (req, res) => {
     const { firstname, lastname, phoneNumber, accountNumber, pin } = req.body;
     const hashedPin = hashPin(pin.trim());
 
+    let taskflow = new EventEmitter();
+
+    // Logic Flow
+    // 1. Check if phone number exists
+    // 2. Register User
+
     // I have used trim function to remove whitespaces
     const user = new User(firstname.trim(), lastname.trim(), phoneNumber.trim(), accountNumber.trim(), hashedPin);
 
-    User.create(user, (err, data) => {
-        if (err) {
-            res.status(500).send({
-                status: "error",
-                message: err.message
-            });
-        } else {
-            const token = generateToken(data.id);
-            res.status(201).send({
-                status: "success",
-                data: {
-                    token,
-                    data
-                }
-            });
-        }
+    taskflow.on('checkIfPhoneNumberExists', () => {
+        User.findByPhoneNumber(phoneNumber?.trim(), (_, data) => {
+            if (data) {
+                res.status(400).send({
+                    status: 'error',
+                    message: `A user with this phoneNumber - '${phoneNumber}' already exits`
+                });
+                return;
+            }
+            taskflow.emit('register');
+        });
     });
+
+    taskflow.on('register', () => {
+        User.create(user, (err, data) => {
+            if (err) {
+                res.status(500).send({
+                    status: "error",
+                    message: err.message
+                });
+            } else {
+                const token = generateToken(data.id);
+                res.status(201).send({
+                    status: "success",
+                    data: {
+                        token,
+                        data
+                    }
+                });
+            }
+        });
+    })
+
+
+    taskflow.emit('checkIfPhoneNumberExists');
 
 };
 
