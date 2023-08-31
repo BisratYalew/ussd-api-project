@@ -6,4 +6,4 @@
 ## Running the program
 #### Go to the authentication-service and ussd-menu-service directories and read the Readme instructions.
 
-##### Do not forget to fill the your database configurations on the .env file on the authentication-service directory
+##### Do not forget to fill your database configurations on the .env file on the authentication-service directory
