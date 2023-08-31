@@ -4,7 +4,7 @@ const asyncHandler = (cb) => async (req, res, next) => {
     } catch (err) {
         return res.status(500).json({
             status: 'error',
-            message: err.message
+            message: "An Internal Server Error has occured"
         });
     }
     return true;
