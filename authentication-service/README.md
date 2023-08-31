@@ -113,7 +113,6 @@ yarn start:dev     or      npm run start:dev
     ├── index.js
     ├── middlewares
     │   ├── asyncHandler.js
-    │   ├── checkEmail.js
     │   └── validatorHandler.js
     ├── models
     │   └── user.model.js
