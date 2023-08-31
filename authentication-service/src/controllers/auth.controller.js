@@ -98,6 +98,16 @@ exports.signin = (req, res) => {
 
 }
 
+/**
+ * @api {get} /api/auth/me Get the authenticated user profile
+ * @apiName Get My Profile
+ * @apiGroup User
+ *
+ * @apiSuccess {String} firstname Users' firstname.
+ * @apiSuccess {String} lastname Users' lastname.
+ * @apiSuccess {String} accountNumber Users' account number.
+ * @apiSuccess {String} phoneNumber Users' phone number.
+ */
 exports.getMyProfile = (req, res) => {
     return res.status(200).json({
         message: "Successfull authorization",
