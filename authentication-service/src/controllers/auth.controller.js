@@ -4,7 +4,7 @@ const { generate: generateToken } = require('../utils/token');
 
 
 /**
- * @api {get} /api/auth/signup Register a new user
+ * @api {post} /api/auth/signup Register a new user
  * @apiName Register User
  * @apiGroup User
  *
@@ -47,7 +47,7 @@ exports.signup = (req, res) => {
 
 
 /**
- * @api {get} /api/auth/signin Login a User.
+ * @api {post} /api/auth/signin Login a User.
  * @apiName Login User
  * @apiGroup User
  *
